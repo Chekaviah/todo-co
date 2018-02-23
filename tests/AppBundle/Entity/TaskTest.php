@@ -25,14 +25,14 @@ class TaskTest extends TestCase
         $task->setTitle('Task');
         $task->setContent('Task content');
         $task->setCreated($now);
-        $task->setStatus(true);
+        $task->setDone(true);
         $task->setUser($userStub);
 
         static::assertNull($task->getId());
         static::assertEquals('Task', $task->getTitle());
         static::assertEquals('Task content', $task->getContent());
         static::assertEquals($now, $task->getCreated());
-        static::assertEquals(true, $task->getStatus());
+        static::assertEquals(true, $task->isDone());
         static::assertEquals(0, $task->getUser()->getId());
     }
 }

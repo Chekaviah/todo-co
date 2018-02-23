@@ -50,7 +50,7 @@ class Task
      *
      * @ORM\Column(type="boolean")
      */
-    private $status;
+    private $done;
 
     /**
      * @var User
@@ -66,7 +66,7 @@ class Task
     public function __construct()
     {
         $this->createdAt = new Datetime();
-        $this->status = false;
+        $this->done = false;
     }
 
     /**
@@ -128,17 +128,17 @@ class Task
     /**
      * @return bool
      */
-    public function getStatus()
+    public function isDone()
     {
-        return $this->status;
+        return $this->done;
     }
 
     /**
-     * @param bool $status
+     * @param bool $done
      */
-    public function setStatus($status)
+    public function setDone($done)
     {
-        $this->status = $status;
+        $this->done = $done;
     }
 
     /**
