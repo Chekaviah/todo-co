@@ -1,0 +1,12 @@
+language: php
+sudo: false
+php:
+  - '7.1'
+
+env:
+  global:
+    - LC_ALL=en_US.UTF-8
+
+script:
+   - composer install
+   - php bin/phpunit
