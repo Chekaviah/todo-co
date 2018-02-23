@@ -93,7 +93,7 @@ class Task
      */
     public function setCreated($created)
     {
-        $this->createdAt = $created;
+        $this->created = $created;
     }
 
     /**
