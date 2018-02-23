@@ -4,7 +4,6 @@ namespace AppBundle\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User
@@ -19,8 +18,8 @@ class Task
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -35,8 +34,7 @@ class Task
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="Vous devez saisir un titre.")
+     * @ORM\Column(type="string", length=50)
      */
     private $title;
 
@@ -44,7 +42,6 @@ class Task
      * @var string
      *
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="Vous devez saisir du contenu.")
      */
     private $content;
 
