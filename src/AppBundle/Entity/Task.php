@@ -65,7 +65,7 @@ class Task
      */
     public function __construct()
     {
-        $this->createdAt = new Datetime();
+        $this->created = new Datetime();
         $this->done = false;
     }
 
