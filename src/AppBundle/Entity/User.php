@@ -168,7 +168,7 @@ class User implements UserInterface
     /**
      * @param Task $task
      */
-    public function addTask($task)
+    public function addTask(Task $task)
     {
         $this->tasks[] = $task;
         $task->setUser($this);
@@ -177,7 +177,7 @@ class User implements UserInterface
     /**
      * @param Task $task
      */
-    public function removeTask($task)
+    public function removeTask(Task $task)
     {
         $this->tasks->removeElement($task);
     }

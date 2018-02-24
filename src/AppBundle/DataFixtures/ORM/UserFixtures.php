@@ -39,7 +39,7 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
         $user->setPassword($passwordEncoder->encodePassword($user, 'user'));
         $manager->persist($user);
 
-        for ($i=1; $i<=20; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $task = $this->getTask($i);
 
             if ($i > 10)

@@ -4,14 +4,23 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+/**
+ * Class UserController
+ *
+ * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
+ */
 class UserController extends Controller
 {
     /**
      * @Route("/users", name="user_list")
+     *
+     * @return Response
      */
     public function listAction()
     {
@@ -19,7 +28,11 @@ class UserController extends Controller
     }
 
     /**
+     * @param Request $request
+     *
      * @Route("/users/create", name="user_create")
+     *
+     * @return RedirectResponse|Response
      */
     public function createAction(Request $request)
     {
@@ -45,7 +58,12 @@ class UserController extends Controller
     }
 
     /**
+     * @param User    $user
+     * @param Request $request
+     *
      * @Route("/users/{id}/edit", name="user_edit")
+     *
+     * @return RedirectResponse|Response
      */
     public function editAction(User $user, Request $request)
     {

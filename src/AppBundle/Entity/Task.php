@@ -152,7 +152,7 @@ class Task
     /**
      * @param User $user
      */
-    public function setUser($user)
+    public function setUser(User $user)
     {
         $this->user = $user;
     }
