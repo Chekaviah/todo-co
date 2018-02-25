@@ -24,7 +24,11 @@ class TaskController extends Controller
      */
     public function listAction()
     {
-        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('AppBundle:Task')->findAll()]);
+        $tasks = $this->getDoctrine()->getRepository('AppBundle:Task')->findAll();
+
+        return $this->render('task/list.html.twig', array(
+            'tasks' => $tasks
+        ));
     }
 
     /**
@@ -37,22 +41,18 @@ class TaskController extends Controller
     public function createAction(Request $request)
     {
         $task = new Task();
-        $form = $this->createForm(TaskType::class, $task);
+        $form = $this->createForm(TaskType::class, $task)->handleRequest($request);
 
-        $form->handleRequest($request);
+        $taskCreateHandler = $this->get('app.task_create_handler');
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($task);
-            $em->flush();
-
+        if ($taskCreateHandler->handle($form, $task)) {
             $this->addFlash('success', 'La tâche a été bien été ajoutée.');
-
             return $this->redirectToRoute('task_list');
         }
 
-        return $this->render('task/create.html.twig', ['form' => $form->createView()]);
+        return $this->render('task/create.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**
@@ -65,15 +65,12 @@ class TaskController extends Controller
      */
     public function editAction(Task $task, Request $request)
     {
-        $form = $this->createForm(TaskType::class, $task);
+        $form = $this->createForm(TaskType::class, $task)->handleRequest($request);
 
-        $form->handleRequest($request);
+        $taskEditHandler = $this->get('app.task_edit_handler');
 
-        if ($form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
+        if ($taskEditHandler->handle($form, $task)) {
             $this->addFlash('success', 'La tâche a bien été modifiée.');
-
             return $this->redirectToRoute('task_list');
         }
 
@@ -95,7 +92,7 @@ class TaskController extends Controller
         $task->setDone(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
 
-        $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
+        $this->addFlash('success', sprintf('Le status de la tâche %s a bien été mis à jour.', $task->getTitle()));
 
         return $this->redirectToRoute('task_list');
     }
