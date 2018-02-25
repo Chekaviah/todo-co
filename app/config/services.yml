@@ -4,6 +4,18 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.user_create_handler:
+        class: AppBundle\Handler\UserCreateHandler
+        arguments: ["@doctrine.orm.entity_manager", "@security.password_encoder"]
+
+    app.user_edit_handler:
+        class: AppBundle\Handler\UserEditHandler
+        arguments: ["@doctrine.orm.entity_manager", "@security.password_encoder"]
+
+    app.task_create_handler:
+        class: AppBundle\Handler\TaskCreateHandler
+        arguments: ["@doctrine.orm.entity_manager", "@security.token_storage"]
+
+    app.task_edit_handler:
+        class: AppBundle\Handler\TaskEditHandler
+        arguments: ["@doctrine.orm.entity_manager"]
