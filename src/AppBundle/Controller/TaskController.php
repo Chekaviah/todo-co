@@ -105,11 +105,14 @@ class TaskController extends Controller
      *
      * @return RedirectResponse
      */
-    public function deleteTaskAction(Task $task)
+    public function deleteTaskAction(Task $task, Request $request)
     {
         $this->denyAccessUnlessGranted(new Expression(
             '"ROLE_ADMIN" in roles or (user === object.getUser())'
         ), $task);
+
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token')))
+            return $this->redirectToRoute('task_list');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
