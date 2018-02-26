@@ -4,7 +4,9 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Class User
@@ -13,6 +15,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @ORM\Entity
  * @ORM\Table("user")
+ * @UniqueEntity(
+ *     fields = {"username"},
+ *     message = "Ce nom est déjà utilisé."
+ * )
+ * @UniqueEntity(
+ *     fields = {"email"},
+ *     message = "Cet email est déjà utilisé."
+ * )
  */
 class User implements UserInterface
 {
@@ -29,6 +39,13 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(type="string", length=25, unique=true)
+     * @Assert\NotBlank(message = "Vous devez saisir un nom d'utilisateur.")
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 25,
+     *     minMessage = "Le nom d'utilisateur doit faire au minimum {{ limit }} caractères.",
+     *     maxMessage = "Le nom d'utilisateur doit faire au maximum {{ limit }} caractères."
+     * )
      */
     private $username;
 
@@ -48,6 +65,12 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(type="string", length=60, unique=true)
+     * @Assert\NotBlank(message = "Vous devez saisir une adresse email.")
+     * @Assert\Length(
+     *     max = 60,
+     *     maxMessage = "Le nom d'utilisateur doit faire au maximum {{ limit }} caractères."
+     * )
+     * @Assert\Email(message = "Le format de l'adresse n'est pas correct.")
      */
     private $email;
 

@@ -6,6 +6,7 @@ use AppBundle\Entity\Task;
 use AppBundle\Form\TaskType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,7 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class TaskController extends Controller
 {
     /**
-     * @Route("/tasks", name="task_list")
+     * @Route("/tasks", methods={"GET"}, name="task_list")
      *
      * @return Response
      */
@@ -34,7 +35,7 @@ class TaskController extends Controller
     /**
      * @param Request $request
      *
-     * @Route("/tasks/create", name="task_create")
+     * @Route("/tasks/create", methods={"GET", "POST"}, name="task_create")
      *
      * @return RedirectResponse|Response
      */
@@ -59,7 +60,7 @@ class TaskController extends Controller
      * @param Task    $task
      * @param Request $request
      *
-     * @Route("/tasks/{id}/edit", name="task_edit")
+     * @Route("/tasks/{id}/edit", methods={"GET", "POST"}, name="task_edit")
      *
      * @return RedirectResponse|Response
      */
@@ -83,7 +84,7 @@ class TaskController extends Controller
     /**
      * @param Task $task
      *
-     * @Route("/tasks/{id}/toggle", name="task_toggle")
+     * @Route("/tasks/{id}/toggle", methods={"GET"}, name="task_toggle")
      *
      * @return RedirectResponse
      */
@@ -100,12 +101,19 @@ class TaskController extends Controller
     /**
      * @param Task $task
      *
-     * @Route("/tasks/{id}/delete", name="task_delete")
+     * @Route("/tasks/{id}/delete", methods={"POST"}, name="task_delete")
      *
      * @return RedirectResponse
      */
-    public function deleteTaskAction(Task $task)
+    public function deleteTaskAction(Task $task, Request $request)
     {
+        $this->denyAccessUnlessGranted(new Expression(
+            '"ROLE_ADMIN" in roles or (user === object.getUser())'
+        ), $task);
+
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token')))
+            return $this->redirectToRoute('task_list');
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
         $em->flush();

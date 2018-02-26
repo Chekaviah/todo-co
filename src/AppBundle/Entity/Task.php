@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User
@@ -28,6 +29,7 @@ class Task
      * @var DateTime
      *
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime()
      */
     private $created;
 
@@ -35,6 +37,13 @@ class Task
      * @var string
      *
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message = "Vous devez saisir un titre.")
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 50,
+     *     minMessage = "Le titre doit faire au minimum {{ limit }} caractères.",
+     *     maxMessage = "Le titre doit faire au maximum {{ limit }} caractères."
+     * )
      */
     private $title;
 
@@ -42,6 +51,7 @@ class Task
      * @var string
      *
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message = "Vous devez saisir du contenu.")
      */
     private $content;
 
@@ -49,6 +59,7 @@ class Task
      * @var bool
      *
      * @ORM\Column(type="boolean")
+     * @Assert\Type(type = "bool")
      */
     private $done;
 
@@ -146,6 +157,10 @@ class Task
      */
     public function getUser()
     {
+        if(is_null($this->user)) {
+            return $this->getAnonUser();
+        }
+
         return $this->user;
     }
 
@@ -155,5 +170,16 @@ class Task
     public function setUser(User $user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return User
+     */
+    private function getAnonUser()
+    {
+        $user = new User();
+        $user->setUsername('Anonyme');
+
+        return $user;
     }
 }
