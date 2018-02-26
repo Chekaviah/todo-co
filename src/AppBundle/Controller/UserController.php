@@ -18,7 +18,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class UserController extends Controller
 {
     /**
-     * @Route("/users", name="user_list")
+     * @Route("/users", methods={"GET"}, name="user_list")
      *
      * @return Response
      */
@@ -34,7 +34,7 @@ class UserController extends Controller
     /**
      * @param Request $request
      *
-     * @Route("/users/create", name="user_create")
+     * @Route("/users/create", methods={"GET", "POST"}, name="user_create")
      *
      * @return RedirectResponse|Response
      */
@@ -59,7 +59,7 @@ class UserController extends Controller
      * @param User    $user
      * @param Request $request
      *
-     * @Route("/users/{id}/edit", name="user_edit")
+     * @Route("/users/{id}/edit", methods={"GET", "POST"}, name="user_edit")
      *
      * @return RedirectResponse|Response
      */
