@@ -157,6 +157,10 @@ class Task
      */
     public function getUser()
     {
+        if(is_null($this->user)) {
+            return $this->getAnonUser();
+        }
+
         return $this->user;
     }
 
@@ -166,5 +170,16 @@ class Task
     public function setUser(User $user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return User
+     */
+    private function getAnonUser()
+    {
+        $user = new User();
+        $user->setUsername('Anonyme');
+
+        return $user;
     }
 }
