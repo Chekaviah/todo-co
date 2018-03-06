@@ -102,19 +102,19 @@ class TaskController extends Controller
 
     /**
      * @param Task    $task
-     * @param Request $request
+     * @param string  $csrf
      *
-     * @Route("/tasks/{id}/delete", methods={"POST"}, name="task_delete")
+     * @Route("/tasks/{id}/delete/{csrf}", methods={"GET"}, name="task_delete")
      *
      * @return RedirectResponse
      */
-    public function deleteTaskAction(Task $task, Request $request)
+    public function deleteTaskAction(Task $task, $csrf)
     {
         $this->denyAccessUnlessGranted(new Expression(
             '"ROLE_ADMIN" in roles or (user === object.getUser())'
         ), $task);
 
-        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
+        if (!$this->isCsrfTokenValid('delete', $csrf)) {
             return $this->redirectToRoute('task_list');
         }
 
