@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\User;
+use AppBundle\EventListener\UserFormSubscriber;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
@@ -45,20 +46,7 @@ class UserType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
             ))
-            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-                $user = $event->getData();
-                $form = $event->getForm();
-
-                if (null !== $user->getId()) {
-                    $form->add('password', RepeatedType::class, [
-                        'type' => PasswordType::class,
-                        'invalid_message' => 'Les deux mots de passe doivent correspondre.',
-                        'required' => false,
-                        'first_options' => ['label' => 'Mot de passe'],
-                        'second_options' => ['label' => 'Tapez le mot de passe à nouveau'],
-                    ]);
-                }
-            })
+            ->addEventSubscriber(new UserFormSubscriber())
         ;
     }
 
