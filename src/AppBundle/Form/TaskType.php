@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
- * Class TaskType
+ * Class TaskType.
  *
  * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */
@@ -33,7 +33,7 @@ class TaskType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Task::class
+            'data_class' => Task::class,
         ]);
     }
 }

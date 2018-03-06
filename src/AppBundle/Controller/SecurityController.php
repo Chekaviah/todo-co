@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
- * Class SecurityController
+ * Class SecurityController.
  *
  * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */
@@ -27,7 +27,7 @@ class SecurityController extends Controller
 
         return $this->render('security/login.html.twig', array(
             'last_username' => $lastUsername,
-            'error'         => $error,
+            'error' => $error,
         ));
     }
 

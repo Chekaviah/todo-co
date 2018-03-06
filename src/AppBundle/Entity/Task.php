@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class User
+ * Class User.
  *
  * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  *
@@ -157,7 +157,7 @@ class Task
      */
     public function getUser()
     {
-        if(is_null($this->user)) {
+        if (is_null($this->user)) {
             return $this->getAnonUser();
         }
 

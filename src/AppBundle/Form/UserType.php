@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 /**
- * Class UserType
+ * Class UserType.
  *
  * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */
@@ -33,7 +33,7 @@ class UserType extends AbstractType
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les deux mots de passe doivent correspondre.',
                 'required' => true,
-                'first_options'  => ['label' => 'Mot de passe'],
+                'first_options' => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Tapez le mot de passe à nouveau'],
             ])
             ->add('email', EmailType::class, ['label' => 'Adresse email'])
@@ -45,17 +45,17 @@ class UserType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
             ))
-            ->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $user = $event->getData();
                 $form = $event->getForm();
 
-                if ($user->getId() !== null) {
+                if (null !== $user->getId()) {
                     $form->add('password', RepeatedType::class, [
-                        'type'            => PasswordType::class,
+                        'type' => PasswordType::class,
                         'invalid_message' => 'Les deux mots de passe doivent correspondre.',
-                        'required'        => false,
-                        'first_options'   => ['label' => 'Mot de passe'],
-                        'second_options'  => ['label' => 'Tapez le mot de passe à nouveau'],
+                        'required' => false,
+                        'first_options' => ['label' => 'Mot de passe'],
+                        'second_options' => ['label' => 'Tapez le mot de passe à nouveau'],
                     ]);
                 }
             })
@@ -68,7 +68,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class
+            'data_class' => User::class,
         ]);
     }
 }

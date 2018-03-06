@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
- * Class TaskController
+ * Class TaskController.
  *
  * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */
@@ -28,7 +28,7 @@ class TaskController extends Controller
         $tasks = $this->getDoctrine()->getRepository('AppBundle:Task')->findAll();
 
         return $this->render('task/list.html.twig', array(
-            'tasks' => $tasks
+            'tasks' => $tasks,
         ));
     }
 
@@ -48,11 +48,12 @@ class TaskController extends Controller
 
         if ($taskCreateHandler->handle($form, $task)) {
             $this->addFlash('success', 'La tâche a été bien été ajoutée.');
+
             return $this->redirectToRoute('task_list');
         }
 
         return $this->render('task/create.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
     }
 
@@ -72,6 +73,7 @@ class TaskController extends Controller
 
         if ($taskEditHandler->handle($form, $task)) {
             $this->addFlash('success', 'La tâche a bien été modifiée.');
+
             return $this->redirectToRoute('task_list');
         }
 
@@ -99,7 +101,8 @@ class TaskController extends Controller
     }
 
     /**
-     * @param Task $task
+     * @param Task    $task
+     * @param Request $request
      *
      * @Route("/tasks/{id}/delete", methods={"POST"}, name="task_delete")
      *
@@ -111,8 +114,9 @@ class TaskController extends Controller
             '"ROLE_ADMIN" in roles or (user === object.getUser())'
         ), $task);
 
-        if (!$this->isCsrfTokenValid('delete', $request->request->get('token')))
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
             return $this->redirectToRoute('task_list');
+        }
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
