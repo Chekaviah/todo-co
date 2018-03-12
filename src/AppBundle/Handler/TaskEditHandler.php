@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * Class TaskEditHandler
+ * Class TaskEditHandler.
  *
  * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */

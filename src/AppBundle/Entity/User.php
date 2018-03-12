@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Class User
+ * Class User.
  *
  * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  *
@@ -174,8 +174,9 @@ class User implements UserInterface
     {
         $roles = $this->roles;
 
-        if (empty($roles))
+        if (empty($roles)) {
             $roles[] = 'ROLE_USER';
+        }
 
         return array_unique($roles);
     }

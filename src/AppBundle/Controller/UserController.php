@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
- * Class UserController
+ * Class UserController.
  *
  * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */
@@ -27,7 +27,7 @@ class UserController extends Controller
         $users = $this->getDoctrine()->getRepository('AppBundle:User')->findAll();
 
         return $this->render('user/list.html.twig', array(
-            'users' => $users
+            'users' => $users,
         ));
     }
 
@@ -47,11 +47,12 @@ class UserController extends Controller
 
         if ($userCreateHandler->handle($form, $user)) {
             $this->addFlash('success', "L'utilisateur a bien été ajouté.");
+
             return $this->redirectToRoute('user_list');
         }
 
         return $this->render('user/create.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
     }
 
@@ -71,12 +72,13 @@ class UserController extends Controller
 
         if ($userEditHandler->handle($form, $user)) {
             $this->addFlash('success', "L'utilisateur a bien été modifié.");
+
             return $this->redirectToRoute('user_list');
         }
 
         return $this->render('user/edit.html.twig', array(
             'form' => $form->createView(),
-            'user' => $user
+            'user' => $user,
         ));
     }
 }

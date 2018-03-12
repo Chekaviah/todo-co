@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * Class UserEditHandler
+ * Class UserEditHandler.
  *
  * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */

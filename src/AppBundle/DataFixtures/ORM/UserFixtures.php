@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 
 /**
- * Class UserFixtures
+ * Class UserFixtures.
  *
  * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */
@@ -39,11 +39,12 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
         $user->setPassword($passwordEncoder->encodePassword($user, 'user'));
         $manager->persist($user);
 
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 20; ++$i) {
             $task = $this->getTask($i);
 
-            if ($i > 10)
+            if ($i > 10) {
                 $user->addTask($task);
+            }
 
             $manager->persist($task);
         }
@@ -57,8 +58,9 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
         $task->setTitle('Task n°'.$i);
         $task->setContent($this->getRandomText());
 
-        if ($i % 3 === 0)
+        if (0 === $i % 3) {
             $task->setDone(true);
+        }
 
         return $task;
     }
@@ -106,6 +108,7 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
         while (mb_strlen($text = implode('. ', $phrases).'.') > $maxLength) {
             array_pop($phrases);
         }
+
         return $text;
     }
 }

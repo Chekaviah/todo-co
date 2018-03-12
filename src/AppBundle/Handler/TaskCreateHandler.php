@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 /**
- * Class TaskCreateHandler
+ * Class TaskCreateHandler.
  *
  * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */
@@ -28,6 +28,7 @@ class TaskCreateHandler
      * TaskCreateHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
+     * @param TokenStorage           $tokenStorage
      */
     public function __construct(EntityManagerInterface $entityManager, TokenStorage $tokenStorage)
     {
