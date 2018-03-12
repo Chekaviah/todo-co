@@ -4,6 +4,7 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Task;
 use AppBundle\Entity\User;
+use PHPUnit\Framework\TestCase;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -13,6 +14,8 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
  * Class UserFixtures.
  *
  * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
+ *
+ * @codeCoverageIgnore
  */
 class UserFixtures extends Fixture implements ContainerAwareInterface
 {
