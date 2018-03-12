@@ -26,7 +26,8 @@ class UserFormSubscriber implements EventSubscriberInterface
         $form = $event->getForm();
 
         if (null !== $user->getId()) {
-            $form->add('password', RepeatedType::class, [
+            $form->remove('password');
+            $form->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les deux mots de passe doivent correspondre.',
                 'required' => false,

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -33,6 +34,8 @@ class SecurityController extends Controller
 
     /**
      * @Route("/logout", name="logout")
+     *
+     * @codeCoverageIgnore
      */
     public function logoutCheck()
     {

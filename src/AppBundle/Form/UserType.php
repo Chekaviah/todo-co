@@ -43,7 +43,6 @@ class UserType extends AbstractType
                     'ROLE_ADMIN' => 'ROLE_ADMIN',
                     'ROLE_USER' => 'ROLE_USER',
                 ],
-                'expanded' => true,
                 'multiple' => true,
             ))
             ->addEventSubscriber(new UserFormSubscriber())

@@ -2,6 +2,10 @@
     "name": "saro0h/to-do-list",
     "license": "proprietary",
     "type": "project",
+    "config": {
+        "optimize-autoloader": true,
+        "classmap-authoritative": true
+    },
     "autoload": {
         "psr-4": {
             "": "src/"
