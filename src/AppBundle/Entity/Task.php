@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace AppBundle\Entity;
 
 use DateTime;
@@ -8,8 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User.
- *
- * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  *
  * @ORM\Entity
  * @ORM\Table

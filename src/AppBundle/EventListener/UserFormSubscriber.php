@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace AppBundle\EventListener;
 
 use Symfony\Component\Form\FormEvent;
@@ -10,8 +17,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Class UserFormSubscriber
- *
- * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */
 class UserFormSubscriber implements EventSubscriberInterface
 {

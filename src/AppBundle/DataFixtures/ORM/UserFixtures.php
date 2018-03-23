@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Task;
@@ -12,8 +19,6 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 
 /**
  * Class UserFixtures.
- *
- * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  *
  * @codeCoverageIgnore
  */

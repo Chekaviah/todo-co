@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
@@ -12,8 +19,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Class UserController.
- *
- * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */
 class UserController extends Controller
 {

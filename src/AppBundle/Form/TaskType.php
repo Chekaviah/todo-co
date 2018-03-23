@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Task;
@@ -10,8 +17,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
  * Class TaskType.
- *
- * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */
 class TaskType extends AbstractType
 {

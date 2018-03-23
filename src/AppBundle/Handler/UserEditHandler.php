@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace AppBundle\Handler;
 
 use AppBundle\Entity\User;
@@ -9,8 +16,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class UserEditHandler.
- *
- * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */
 class UserEditHandler
 {

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace AppBundle\Handler;
 
 use AppBundle\Entity\Task;
@@ -8,8 +15,6 @@ use Symfony\Component\Form\FormInterface;
 
 /**
  * Class TaskEditHandler.
- *
- * @author Mathieu GUILLEMINOT <guilleminotm@gmail.com>
  */
 class TaskEditHandler
 {
